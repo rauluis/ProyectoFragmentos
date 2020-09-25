@@ -64,7 +64,7 @@ public class MisJuegosAdapter extends RecyclerView.Adapter<MisJuegosAdapter.View
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imgMisjuegos= itemView.findViewById(R.id.imgJuego);
-            txtTitulo = itemView.findViewById(R.id.txtDescripcion);
+            txtTitulo = itemView.findViewById(R.id.txtTitulo);
             rbClasificacion = itemView.findViewById(R.id.rbClasificacion);
             txtDescripcion = itemView.findViewById(R.id.txtDescripcion);
             this.view= itemView;
