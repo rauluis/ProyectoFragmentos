@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1058057157564",
+    "firebase_url": "https://fragmentos-71786.firebaseio.com",
+    "project_id": "fragmentos-71786",
+    "storage_bucket": "fragmentos-71786.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058057157564:android:b8176515d6cee685af89b9",
+        "android_client_info": {
+          "package_name": "elrizo.com.fragmentos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058057157564-ior6ljeti8njqa382nkkmgkqtdcdk0je.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1H9cbBbM_zJw8s4PeERasRyVEIDEtrsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058057157564-ior6ljeti8njqa382nkkmgkqtdcdk0je.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
