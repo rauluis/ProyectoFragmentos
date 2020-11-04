@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements NavigationHost {
                                 R.animator.slide_in_right,
                                 R.animator.slide_out_left)
                         .replace(R.id.contentPanel, fragment);
-        if (addToBaskStack)
+        if(addToBaskStack)
             transaction.addToBackStack(null);
         transaction.commit();
     }
