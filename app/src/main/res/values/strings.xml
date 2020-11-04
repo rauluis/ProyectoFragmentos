@@ -2,4 +2,11 @@
     <string name="app_name">ioko.juega</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_message_url_null">selecciona una imagen ed la galeria</string>
+    <string name="main_message_upload_success">imagen cargada exitosamente</string>
+    <string name="main_message_done">listo</string>
+    <string name="main_messagge_main_message_upload_error">Error al subir la imagen.Intente denuevo.</string>
+    <string name="main_message_delete_success">Imagen eliminada correctamente</string>
+    <string name="main_message_delete_error">Ocurrio un error al eliminar la imagen</string>
+    <string name="main_message_error_notfound">No se pudo cargar la imagen</string>
 </resources>

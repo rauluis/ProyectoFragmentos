@@ -2,17 +2,19 @@ package elrizo.com.fragmentos.model;
 
 import java.util.Objects;
 
-public class Juego {
+public class AddFragment {
+
     private int idJuego;
     private String imagen;
     private String titulo;
     private int clasificacion;
     private String descripcion;
 
-    public Juego() {
+    public AddFragment(){
+
     }
 
-    public Juego(int idJuego, String imagen, String titulo, int clasificacion, String descripcion) {
+    public AddFragment(int idJuego, String imagen, String titulo, int clasificacion, String descripcion) {
         this.idJuego = idJuego;
         this.imagen = imagen;
         this.titulo = titulo;
@@ -64,13 +66,14 @@ public class Juego {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Juego juego = (Juego) o;
-        return idJuego == juego.idJuego;
+        AddFragment addFragment = (AddFragment) o;
+        return idJuego == addFragment.idJuego;
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return Objects.hash(idJuego);
     }
+
+
 }

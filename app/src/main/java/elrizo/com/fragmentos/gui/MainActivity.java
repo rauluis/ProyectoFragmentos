@@ -1,6 +1,7 @@
 package elrizo.com.fragmentos.gui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -18,7 +19,7 @@ import elrizo.com.fragmentos.gui.components.NavigationHost;
 
 public class MainActivity extends AppCompatActivity implements NavigationHost {
 
-public  static HashMap <String, Object> GLOBALS = new HashMap<>();
+    public static HashMap<String, Object> GLOBALS = new HashMap<>();
 
 
     private MaterialButton mnTopgames;
@@ -27,36 +28,30 @@ public  static HashMap <String, Object> GLOBALS = new HashMap<>();
     private MaterialButton mnMisJuegos;
     private MaterialButton mnCategorias;
     private MaterialButton mnViejaEscuela;
-
-
-
-
+    private MaterialButton mnAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mnTopgames =findViewById(R.id.mnTopGames);
-        mnTopRanked=findViewById(R.id.mnTopRanked);
-        mnFreeToPlay=findViewById(R.id.mnFreeToPlay);
-        mnMisJuegos=findViewById(R.id.mnMyGames);
-        mnCategorias=findViewById(R.id.mnCategory);
-        mnViejaEscuela=findViewById(R.id.mnOldSchool);
-
         setContentView(R.layout.activity_main);
+
         configContext();
         configGlobals();
-
         configFragmentManager(savedInstanceState);
 
+        mnTopgames = findViewById(R.id.mnTopGames);
+        mnTopRanked = findViewById(R.id.mnTopRanked);
+        mnFreeToPlay = findViewById(R.id.mnFreeToPlay);
+        mnMisJuegos = findViewById(R.id.mnMyGames);
+        mnCategorias = findViewById(R.id.mnCategory);
+        mnViejaEscuela = findViewById(R.id.mnOldSchool);
+        mnAdmin = findViewById(R.id.mnAdmin);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.appBar);
+        setSupportActionBar(myToolbar);
 
 
     }
-
-
-
-
 
 
     private void configContext() {
@@ -65,45 +60,41 @@ public  static HashMap <String, Object> GLOBALS = new HashMap<>();
     }
 
     private void configGlobals() {
-GLOBALS.put("app",this);
+        GLOBALS.put("app", this);
     }
 
     private void configFragmentManager(Bundle savedInstanceState) {
 
-        if(savedInstanceState==null){
+        if (savedInstanceState == null) {
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.contentPanel, new TopJuegos())
+                    .add(R.id.contentPanel, new LoginFragment())
                     .commit();
 
         }
-          }
-
-
+    }
 
 
     @Override
-    public void navigateTo(Fragment fragment, boolean addToBackStack) {
+    public void navigateTo(Fragment fragment, boolean addToBaskStack) {
         FragmentTransaction transaction =
                 getSupportFragmentManager()
-                .beginTransaction()
+                        .beginTransaction()
                         .setCustomAnimations(
                                 R.animator.slide_in_left,
                                 R.animator.slide_out_right,
                                 R.animator.slide_in_right,
                                 R.animator.slide_out_left)
-
-                .replace(R.id.contentPanel,fragment);
-        if(addToBackStack)
+                        .replace(R.id.contentPanel, fragment);
+        if (addToBaskStack)
             transaction.addToBackStack(null);
         transaction.commit();
-
     }
 
     public void onClick(View view) {
 
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.mnCategory:
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -143,6 +134,13 @@ GLOBALS.put("app",this);
                 getSupportFragmentManager()
                         .beginTransaction()
                         .add(R.id.contentPanel, new TopRankeados())
+                        .commit();
+                break;
+            case R.id.mnAdmin:
+
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.contentPanel, new AdminFragment())
                         .commit();
                 break;
 

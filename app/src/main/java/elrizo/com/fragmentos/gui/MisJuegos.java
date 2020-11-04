@@ -49,6 +49,7 @@ public class MisJuegos extends Fragment {
     }
 
     private void configGlobals() {
+
         MainActivity.GLOBALS.put("misJuegosFragment",this);
     }
 

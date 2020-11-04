@@ -2,30 +2,31 @@ package elrizo.com.fragmentos.model;
 
 import java.util.Objects;
 
-public class Juego {
-    private int idJuego;
+public class Admin {
+
+    private int idAdmin;
     private String imagen;
     private String titulo;
     private int clasificacion;
     private String descripcion;
 
-    public Juego() {
+    public Admin() {
     }
 
-    public Juego(int idJuego, String imagen, String titulo, int clasificacion, String descripcion) {
-        this.idJuego = idJuego;
+    public Admin(int idAdmin, String imagen, String titulo, int clasificacion, String descripcion) {
+        this.idAdmin = idAdmin;
         this.imagen = imagen;
         this.titulo = titulo;
         this.clasificacion = clasificacion;
         this.descripcion = descripcion;
     }
 
-    public int getIdJuego() {
-        return idJuego;
+    public int getIdAdmin() {
+        return idAdmin;
     }
 
-    public void setIdJuego(int idJuego) {
-        this.idJuego = idJuego;
+    public void setIdAdmin(int idAdmin) {
+        this.idAdmin = idAdmin;
     }
 
     public String getImagen() {
@@ -59,18 +60,20 @@ public class Juego {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Juego juego = (Juego) o;
-        return idJuego == juego.idJuego;
+        Admin Admin = (Admin) o;
+        return idAdmin == Admin.idAdmin;
     }
 
     @Override
-    public int hashCode()
-    {
-        return Objects.hash(idJuego);
+    public int hashCode() {
+        return Objects.hash(idAdmin);
     }
+
+
+
 }
+
