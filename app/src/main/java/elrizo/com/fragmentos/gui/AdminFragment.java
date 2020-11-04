@@ -28,13 +28,9 @@ import java.util.List;
 
 import elrizo.com.fragmentos.R;
 import elrizo.com.fragmentos.databinding.FragmentAdminBinding;
-import elrizo.com.fragmentos.databinding.FragmentMisJuegosBinding;
-import elrizo.com.fragmentos.gui.components.AdminAdapter;
 import elrizo.com.fragmentos.gui.components.JuegosAdapter;
-import elrizo.com.fragmentos.gui.components.MisJuegosAdapter;
 import elrizo.com.fragmentos.gui.components.NavigationHost;
 import elrizo.com.fragmentos.gui.components.NavigationIconClickListener;
-import elrizo.com.fragmentos.model.Admin;
 import elrizo.com.fragmentos.model.Juego;
 
 public class AdminFragment extends Fragment {
@@ -42,10 +38,10 @@ public class AdminFragment extends Fragment {
     private FragmentAdminBinding binding;
     private  View view;
     private Context context;
-    private List<Juego> admins = new ArrayList<>();
+    private List<Juego> juegos = new ArrayList<>();
 
 
-    private  static String PATH_TOP= "AdminFragment";
+    private  static String PATH_TOP= "topJuegos";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -108,27 +104,26 @@ return view;
 
     private void configUI() {
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
-            view.findViewById(R.id.gridAdmin).setBackground(getContext().getDrawable(R.drawable.product_grid_background_shape));
+            view.findViewById(R.id.gridAdmin)
+                    .setBackground(getContext()
+                            .getDrawable(R.drawable
+                                    .product_grid_background_shape));
         }
     }
 
     private void configRecycler() {
 
 
-     //   binding.rclvAdmin.setHasFixedSize(true);
-        //LinearLayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL,false);
-      //  binding.rclvAdmin.setLayoutManager(layoutManager);
-       // binding.rclvAdmin.setAdapter(new AdminAdapter(admins));
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference(PATH_TOP);
+         FirebaseDatabase database = FirebaseDatabase.getInstance();
+         DatabaseReference reference = database.getReference(PATH_TOP);
 
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                  Juego juego = snapshot.getValue(Juego.class);
-                if (!admins.contains(juego)) {
-                    admins.add(juego);
+                if (!juegos.contains(juego)) {
+                    juegos.add(juego);
                 }
                 binding.rclvAdmin.getAdapter().notifyDataSetChanged();
 
@@ -138,14 +133,13 @@ return view;
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-              //  Admin admin = snapshot.getValue(Admin.class);
 
                 Juego juego = snapshot.getValue(Juego.class);
                 if (juego != null){
                     Log.i("juego","onChildChanged: " + juego.getIdJuego());
                 }
 
-                admins.set(admins.indexOf(juego),juego);
+               juegos.set(juegos.indexOf(juego),juego);
                 binding.rclvAdmin.getAdapter().notifyDataSetChanged();
             }
 
@@ -172,7 +166,7 @@ return view;
         binding.rclvAdmin.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL,false);
         binding.rclvAdmin.setLayoutManager(layoutManager);
-        binding.rclvAdmin.setAdapter(new JuegosAdapter(admins));
+        binding.rclvAdmin.setAdapter(new JuegosAdapter(juegos));
 
     }
 }

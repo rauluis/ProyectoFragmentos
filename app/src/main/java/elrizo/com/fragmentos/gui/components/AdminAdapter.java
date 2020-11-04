@@ -11,10 +11,13 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatRatingBar;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.List;
 
 import elrizo.com.fragmentos.R;
-import elrizo.com.fragmentos.model.Admin;
 import elrizo.com.fragmentos.model.Juego;
 
 public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.ViewHolder> {
@@ -37,14 +40,30 @@ private Context context;
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+
+
+        //int imgResourse = context.getResources().getIdentifier(imgUri,null, context.getPackageName());
+
         Juego administracion = admins.get(position);
-        String imgUri = "@drawable/" + administracion.getImagen();
-        int imgResourse = context.getResources().getIdentifier(imgUri,null, context.getPackageName());
-        holder.imgJuego.setImageResource(imgResourse);
+        String imgUri = administracion.getImagen();
+        RequestOptions options = new RequestOptions()
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                //.fitCenter();
+                .centerCrop();
+
+        Glide.with(context)
+                .load(imgUri)
+                .placeholder(R.drawable.load)
+                .error(R.drawable.ic_error)
+                .apply(options)
+                .into(holder.imgJuego);
+        //holder.icAdministrar.setImageResource(imgResourse);
         holder.txtTitulo.setText(administracion.getTitulo());
         holder.rbClasificacion.setRating(administracion.getClasificacion());
         holder.txtDescripcion.setText(administracion.getDescripcion());
+
     }
+
 
     @Override
     public int getItemCount() {

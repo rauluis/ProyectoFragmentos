@@ -41,7 +41,6 @@ public class JuegosAdapter extends RecyclerView.Adapter<JuegosAdapter.ViewHolder
             int imgResource =  context.getResources().getIdentifier
                     (imgUri,null,context.getPackageName());
             holder.imgJuego.setImageResource(imgResource);
-
             holder.txtTitulo.setText(juego.getTitulo());
             holder.rbClasificacion.setRating(juego.getClasificacion());
             holder.txtDescripcion.setText(juego.getDescripcion());

@@ -3,7 +3,7 @@ package elrizo.com.fragmentos.model;
 import java.util.Objects;
 
 public class Juego {
-    private int idJuego;
+    private String idJuego;
     private String imagen;
     private String titulo;
     private int clasificacion;
@@ -12,7 +12,7 @@ public class Juego {
     public Juego() {
     }
 
-    public Juego(int idJuego, String imagen, String titulo, int clasificacion, String descripcion) {
+    public Juego(String idJuego, String imagen, String titulo, int clasificacion, String descripcion) {
         this.idJuego = idJuego;
         this.imagen = imagen;
         this.titulo = titulo;
@@ -20,11 +20,11 @@ public class Juego {
         this.descripcion = descripcion;
     }
 
-    public int getIdJuego() {
+    public String getIdJuego() {
         return idJuego;
     }
 
-    public void setIdJuego(int idJuego) {
+    public void setIdJuego(String idJuego) {
         this.idJuego = idJuego;
     }
 
@@ -65,12 +65,11 @@ public class Juego {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Juego juego = (Juego) o;
-        return idJuego == juego.idJuego;
+        return Objects.equals(idJuego, juego.idJuego);
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return Objects.hash(idJuego);
     }
 }

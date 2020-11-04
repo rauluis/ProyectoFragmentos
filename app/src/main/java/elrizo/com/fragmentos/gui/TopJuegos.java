@@ -82,8 +82,8 @@ public class TopJuegos extends Fragment {
         if(activity!=null){
             activity.setSupportActionBar(binding.appBar);
         }
-        binding.appBar.setNavigationOnClickListener(new NavigationIconClickListener(
-                context,
+        binding.appBar.setNavigationOnClickListener(
+                new NavigationIconClickListener(context,
                 view.findViewById(R.id.gridTopJuegos),
                 new AccelerateDecelerateInterpolator(),
                 context.getDrawable(R.drawable.menu),
