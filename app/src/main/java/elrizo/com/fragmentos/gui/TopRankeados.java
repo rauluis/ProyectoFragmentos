@@ -76,13 +76,13 @@ public class TopRankeados extends Fragment {
     }
 
     private void configRecycler() {
-        juegos.add(new Juego(1,"amongus","Among Us",5,"El funado"));
+       /*juegos.add(new Juego(1,"amongus","Among Us",5,"El funado"));
         juegos.add(new Juego(2,"fornite","Fornite",1,"Minecraft pero con disparos"));
         juegos.add(new Juego(3,"mariokart","Mario Kart",3,"Un clasico"));
         juegos.add(new Juego(4,"minecraft","Maincra",5,"Juego de cuadritos HD"));
         juegos.add(new Juego(5,"thelastofus","The Last Of Us",4,"La melancolia de Ellie"));
         juegos.add(new Juego(6,"zelda","The Legend of Zelda",4,"Pasate el zelda"));
-
+*/
         binding.rclvTopRankeados.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.HORIZONTAL,false);
         binding.rclvTopRankeados.setLayoutManager(layoutManager);

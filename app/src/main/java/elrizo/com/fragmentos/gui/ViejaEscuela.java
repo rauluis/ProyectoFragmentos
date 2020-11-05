@@ -80,12 +80,12 @@ public class ViejaEscuela  extends Fragment {
 
     private void configRecycler() {
 
-        juegos.add(new Juego(1,"runescape","Runescape",1,"Literalmente Vieja escuela"));
+     /*   juegos.add(new Juego(1,"runescape","Runescape",1,"Literalmente Vieja escuela"));
         juegos.add(new Juego(2,"tetris","Tetris",4,"Figuritas callendo"));
         juegos.add(new Juego(3,"mariokart","Mario Kart",3,"Un clasico"));
         juegos.add(new Juego(4,"pacman","Pac-Man",4,"Come quesitos"));
         juegos.add(new Juego(5,"uno","Uno",5,"Rompe amistades"));
-
+*/
 
 
         binding.rclvViejaEscuela.setHasFixedSize(true);

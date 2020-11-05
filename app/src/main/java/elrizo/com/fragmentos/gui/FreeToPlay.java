@@ -78,12 +78,12 @@ public class FreeToPlay  extends Fragment{
     }
 
     private void configRecycler() {
-        juegos.add(new Juego(1,"amongus","Among Us",5,"El funado"));
+        /*juegos.add(new Juego(1,"amongus","Among Us",5,"El funado"));
         juegos.add(new Juego(2,"fornite","Fornite",1,"Minecraft pero con disparos"));
         juegos.add(new Juego(3,"lol","League of Leyends",3,"El LOL"));
         juegos.add(new Juego(4,"mariokart","Mario Kart",3,"Un clasico"));
         juegos.add(new Juego(5,"uno","Uno",5,"El rompe amistades"));
-
+*/
 
         binding.rclvFreeToPlay.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.HORIZONTAL,false);
