@@ -105,9 +105,13 @@ public class TopJuegos extends Fragment {
 //        juegos.add(new Juego(4,"minecraft","Maincra",5,"Juego de cuadritos HD"));
      //   juegos.add(new Juego(5,"destiny2","Destiny",4,"El legado de Halo"));
 
+        binding.rclvTopJuegos.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.HORIZONTAL,false);
+        binding.rclvTopJuegos.setLayoutManager(layoutManager);
+        binding.rclvTopJuegos.setAdapter(new JuegosAdapter(juegos));
 
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_TOP);
 
         reference.addChildEventListener(new ChildEventListener() {
@@ -124,9 +128,9 @@ public class TopJuegos extends Fragment {
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Juego juego = snapshot.getValue(Juego.class);
-                if (juego != null){
-                    Log.i("juego","onChildChanged: " + juego.getIdJuego());
-                }
+                //if (juego != null){
+               //     Log.i("juego","onChildChanged: " + juego.getIdJuego());
+               // }
 
                 juegos.set(juegos.indexOf(juego),juego);
                 binding.rclvTopJuegos.getAdapter().notifyDataSetChanged();
@@ -135,10 +139,10 @@ public class TopJuegos extends Fragment {
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
-             //   Juego juego = snapshot.getValue(Juego.class);
-               // juegos.remove(juego);
+               Juego juego = snapshot.getValue(Juego.class);
+                juegos.remove(juego);
 
-               // binding.rclvTopJuegos.getAdapter().notifyDataSetChanged();
+               binding.rclvTopJuegos.getAdapter().notifyDataSetChanged();
 
             }
 
@@ -152,10 +156,6 @@ public class TopJuegos extends Fragment {
 
             }
         });
-        binding.rclvTopJuegos.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.HORIZONTAL,false);
-        binding.rclvTopJuegos.setLayoutManager(layoutManager);
-        binding.rclvTopJuegos.setAdapter(new JuegosAdapter(juegos));
 
 
     }
