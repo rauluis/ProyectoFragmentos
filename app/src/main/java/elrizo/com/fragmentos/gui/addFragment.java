@@ -66,9 +66,7 @@ public class addFragment extends Fragment {
     private DatabaseReference mDataBase;
 
     private static final int RC_GALERY = 21;
-    private static final int RC_CAMERA = 22;
 
-    private static final int RP_CAMERA = 121;
     private static final int RP_STORAGE = 122;
 
     private static final String IMAGE_DIRECTORY = "/MyPhotoApp";
@@ -77,7 +75,6 @@ public class addFragment extends Fragment {
     private static final String PATH_PROFILE = "topJuegos";
     private static final String PATH_PHOTO_URL = "1";
 
-    private TextView lblMessage;
     private FragmentAddBinding binding;
 
     private StorageReference storageReference;
@@ -109,7 +106,7 @@ public class addFragment extends Fragment {
         guardar = view.findViewById(R.id.btnGuardar);
         cancelar = view.findViewById(R.id.btnCancelar);
         clasi = view.findViewById(R.id.rbClasificacion);
-        btnDelete = view.findViewById(R.id.btnDelete);
+       btnDelete = view.findViewById(R.id.btnDelete);
         ctn = view.findViewById(R.id.container);
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -146,6 +143,7 @@ public class addFragment extends Fragment {
                 newJuego.setValue(juego, new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+
                         UploadImage();
                     }
                 });
@@ -160,7 +158,7 @@ public class addFragment extends Fragment {
         });
 
 
-        /*binding.btnDelete.setOnClickListener(new View.OnClickListener() {
+       /* binding.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 storageReference.child(PATH_PROFILE).child(MY_PHOTO).child("imagen").delete()
@@ -168,14 +166,14 @@ public class addFragment extends Fragment {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 databaseReference.removeValue();
-                                binding.icNJuego.setImageBitmap(null);
-                                binding.icNJuego.setVisibility(View.GONE);
-                                Snackbar.make(binding.container, R.string.main_message_delete_success, BaseTransientBottomBar.LENGTH_LONG).show();
+                                binding.imgJuego.setImageBitmap(null);
+                                binding.imgJuego.setVisibility(View.GONE);
+                                Snackbar.make(ctn, R.string.main_message_delete_success, BaseTransientBottomBar.LENGTH_LONG).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Snackbar.make(binding.container, R.string.main_message_delete_error, BaseTransientBottomBar.LENGTH_LONG).show();
+                        Snackbar.make(ctn, R.string.main_message_delete_error, BaseTransientBottomBar.LENGTH_LONG).show();
                     }
                 });
             }
@@ -189,7 +187,7 @@ public class addFragment extends Fragment {
         });
 
 
-        //configPhotoProfile();
+        configPhotoProfile();
 
 
         return view;
@@ -211,7 +209,7 @@ public class addFragment extends Fragment {
         urlReference.putFile(photoSelectedUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                //Snackbar.make(ctn, R.string.main_message_upload_success, BaseTransientBottomBar.LENGTH_LONG).show();
+                Snackbar.make(ctn, R.string.main_message_upload_success, BaseTransientBottomBar.LENGTH_LONG).show();
                 taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
@@ -219,7 +217,9 @@ public class addFragment extends Fragment {
                     }
                 });
 
-                //binding.btnDelete.setVisibility(View.VISIBLE);
+                binding.btnDelete.setVisibility(View.VISIBLE);
+                Snackbar.make(ctn, R.string.main_message_done, BaseTransientBottomBar.LENGTH_LONG).show();
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -227,6 +227,32 @@ public class addFragment extends Fragment {
                 Snackbar.make(ctn, R.string.main_message_upload_error, BaseTransientBottomBar.LENGTH_LONG).show();
             }
         });
+      /*  binding.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                storageReference.child(PATH_PROFILE).child(MY_PHOTO)
+                        .delete().addOnSuccessListener
+                        (new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                databaseReference.removeValue();
+                                binding.imgJuego.setImageBitmap(null);
+                                binding.btnDelete.setVisibility(View.GONE);
+                                Snackbar.make(binding.container,
+                                        R.string.main_message_delete_success,
+                                        BaseTransientBottomBar.LENGTH_LONG).show();
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+Snackbar.make(ctn,R.string.main_message_delete_error, BaseTransientBottomBar.LENGTH_LONG).show();
+
+                    }
+                });
+            }
+        });*/
+        configPhotoProfile();
     }
 
     private void savePhotoUrl(Uri downloadUri) {
@@ -240,7 +266,7 @@ public class addFragment extends Fragment {
                     public void onSuccess(Uri uri) {
                         RequestOptions options = new RequestOptions()
                                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                                //.fitCenter();
+
                                 .centerCrop();
 
                         Glide.with(addFragment.this)
@@ -248,13 +274,13 @@ public class addFragment extends Fragment {
                                 .placeholder(R.drawable.load)
                                 .error(R.drawable.ic_error)
                                 .into(binding.imgJuego);
-                        btnDelete.setVisibility(View.VISIBLE);
+                      //  btnDelete.setVisibility(View.VISIBLE);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        btnDelete.setVisibility(View.GONE);
+                     //   btnDelete.setVisibility(View.GONE);
                         Snackbar.make(ctn, R.string.main_message_error_notfound, BaseTransientBottomBar.LENGTH_LONG).show();
                     }
                 });
@@ -270,7 +296,11 @@ public class addFragment extends Fragment {
                         photoSelectedUri = data.getData();
                         try {
                             Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), photoSelectedUri);
+                            binding.imgJuego.setImageBitmap(null);
+                          //  binding.btnDelete.setVisibility(View.GONE);
+
                             imageView.setImageBitmap(bitmap);
+
 
                         } catch (IOException e) {
                             e.printStackTrace();

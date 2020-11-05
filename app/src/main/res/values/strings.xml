@@ -9,6 +9,6 @@
     <string name="main_message_delete_success">Imagen eliminada correctamente</string>
     <string name="main_message_delete_error">Ocurrio un error al eliminar la imagen</string>
     <string name="main_message_error_notfound">No se pudo cargar la imagen</string>
-    <string name="main_message_uri_null">Selecciona una imagen</string>
+    <string name="main_message_uri_null">imagen null</string>
     <string name="main_message_upload_error">Ocurrio un error al subir la imagen</string>
 </resources>

@@ -28,6 +28,7 @@ import java.util.List;
 
 import elrizo.com.fragmentos.R;
 import elrizo.com.fragmentos.databinding.FragmentAdminBinding;
+import elrizo.com.fragmentos.gui.components.AdminAdapter;
 import elrizo.com.fragmentos.gui.components.JuegosAdapter;
 import elrizo.com.fragmentos.gui.components.NavigationHost;
 import elrizo.com.fragmentos.gui.components.NavigationIconClickListener;
@@ -146,10 +147,10 @@ return view;
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
-              //  Admin admin = snapshot.getValue(Admin.class);
-               // admins.remove(admin);
+               // Juego admin = snapshot.getValue(Juego.class);
+                //juegos.remove(admin);
 //
-                //binding.rclvAdmin.getAdapter().notifyDataSetChanged();
+ //               binding.rclvAdmin.getAdapter().notifyDataSetChanged();
 
             }
 
@@ -166,7 +167,7 @@ return view;
         binding.rclvAdmin.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.VERTICAL,false);
         binding.rclvAdmin.setLayoutManager(layoutManager);
-        binding.rclvAdmin.setAdapter(new JuegosAdapter(juegos));
+        binding.rclvAdmin.setAdapter(new AdminAdapter(juegos));
 
     }
 }

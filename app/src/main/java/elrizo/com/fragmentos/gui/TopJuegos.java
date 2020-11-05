@@ -99,11 +99,13 @@ public class TopJuegos extends Fragment {
 }
 
     private void configRecycler() {
-//        juegos.add(new Juego(1,"halo","Halo Reach",5,"Veo gente muerta"));
+
+      //  juegos.add(new Juego("a","halo","Halo Reach",5,"Veo gente muerta"));
 //        juegos.add(new Juego(2,"callofduty","Call of dutty",1,"Free Fire para fresas"));
 //        juegos.add(new Juego(3,"mariokart","Mario Kart",3,"Un clasico"));
 //        juegos.add(new Juego(4,"minecraft","Maincra",5,"Juego de cuadritos HD"));
      //   juegos.add(new Juego(5,"destiny2","Destiny",4,"El legado de Halo"));
+
 
         binding.rclvTopJuegos.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, RecyclerView.HORIZONTAL,false);
