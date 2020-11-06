@@ -147,10 +147,9 @@ return view;
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
-               // Juego admin = snapshot.getValue(Juego.class);
-                //juegos.remove(admin);
-//
- //               binding.rclvAdmin.getAdapter().notifyDataSetChanged();
+               Juego admin = snapshot.getValue(Juego.class);
+               juegos.remove(admin);
+                binding.rclvAdmin.getAdapter().notifyDataSetChanged();
 
             }
 

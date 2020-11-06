@@ -113,7 +113,7 @@ public class TopJuegos extends Fragment {
         binding.rclvTopJuegos.setAdapter(new JuegosAdapter(juegos));
 
 
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference(PATH_TOP);
 
         reference.addChildEventListener(new ChildEventListener() {

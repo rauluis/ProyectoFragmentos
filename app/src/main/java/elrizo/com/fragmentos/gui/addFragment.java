@@ -120,20 +120,11 @@ public class addFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-//                mDataBase = FirebaseDatabase.getInstance().getReference("Administrar").child(String.valueOf(i));
-//                String titulo = edit1.getText().toString();
-//                String descripcion = edit2.getText().toString();
-//                float clasificacion = clasi.getRating();
-//                mDataBase.child("titulo").setValue(titulo);
-//                mDataBase.child("descripcion").setValue(descripcion);
-//                mDataBase.child("clasificacion").setValue(clasificacion);
-//                //mDataBase.child("idJuego").setValue(i);
-//                mDataBase.child("imagen").setValue("");
-//                i++;
+
                 databaseReference = FirebaseDatabase.getInstance().getReference().child("topJuegos");
                 storageReference = FirebaseStorage.getInstance().getReference();
                 newJuego = databaseReference.push();
-                Juego juego = new Juego();
+                final Juego juego = new Juego();
                 juego.setIdJuego(newJuego.getKey());
                 juego.setClasificacion((int)clasi.getRating());
                 juego.setDescripcion(edit2.getText().toString());
@@ -145,6 +136,7 @@ public class addFragment extends Fragment {
                     public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
 
                         UploadImage();
+
                     }
                 });
 
@@ -187,7 +179,7 @@ public class addFragment extends Fragment {
         });
 
 
-        configPhotoProfile();
+      //  configPhotoProfile();
 
 
         return view;
@@ -209,22 +201,24 @@ public class addFragment extends Fragment {
         urlReference.putFile(photoSelectedUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Snackbar.make(ctn, R.string.main_message_upload_success, BaseTransientBottomBar.LENGTH_LONG).show();
+     //////////////          // Snackbar.make(ctn, R.string.main_message_upload_success, BaseTransientBottomBar.LENGTH_LONG).show();
                 taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
                         savePhotoUrl(task.getResult());
+                        final Juego juego = new Juego();
+                        juego.setImagen(String.valueOf(task.getResult()));
                     }
                 });
 
-                binding.btnDelete.setVisibility(View.VISIBLE);
-                Snackbar.make(ctn, R.string.main_message_done, BaseTransientBottomBar.LENGTH_LONG).show();
+//                binding.btnDelete.setVisibility(View.VISIBLE);
+            //    Snackbar.make(ctn, R.string.main_message_done, BaseTransientBottomBar.LENGTH_LONG).show();
 
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Snackbar.make(ctn, R.string.main_message_upload_error, BaseTransientBottomBar.LENGTH_LONG).show();
+     /////////////////////////////        //////   Snackbar.make(ctn, R.string.main_message_upload_error, BaseTransientBottomBar.LENGTH_LONG).show();
             }
         });
       /*  binding.btnDelete.setOnClickListener(new View.OnClickListener() {
@@ -252,11 +246,12 @@ Snackbar.make(ctn,R.string.main_message_delete_error, BaseTransientBottomBar.LEN
                 });
             }
         });*/
-        configPhotoProfile();
+     /////////////////////////////////////   configPhotoProfile();
     }
 
     private void savePhotoUrl(Uri downloadUri) {
         newJuego.child("imagen").setValue(downloadUri.toString());
+
     }
 
     private void configPhotoProfile() {
@@ -281,7 +276,7 @@ Snackbar.make(ctn,R.string.main_message_delete_error, BaseTransientBottomBar.LEN
                     @Override
                     public void onFailure(@NonNull Exception e) {
                      //   btnDelete.setVisibility(View.GONE);
-                        Snackbar.make(ctn, R.string.main_message_error_notfound, BaseTransientBottomBar.LENGTH_LONG).show();
+                    //    Snackbar.make(ctn, R.string.main_message_error_notfound, BaseTransientBottomBar.LENGTH_LONG).show();
                     }
                 });
     }
@@ -296,7 +291,7 @@ Snackbar.make(ctn,R.string.main_message_delete_error, BaseTransientBottomBar.LEN
                         photoSelectedUri = data.getData();
                         try {
                             Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), photoSelectedUri);
-                            binding.imgJuego.setImageBitmap(null);
+                         //   binding.imgJuego.setImageBitmap(null);
                           //  binding.btnDelete.setVisibility(View.GONE);
 
                             imageView.setImageBitmap(bitmap);

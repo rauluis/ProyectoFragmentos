@@ -1,6 +1,8 @@
 package elrizo.com.fragmentos.gui.components;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,14 +33,16 @@ private Context context;
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_admin, parent,false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.row_admin, parent,false);
         context = parent.getContext();
         return new ViewHolder(view);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder,
+                                 int position) {
 
 
 
@@ -57,7 +61,7 @@ private Context context;
                 .error(R.drawable.ic_error)
                 .apply(options)
                 .into(holder.imgJuego);
-        //holder.icAdministrar.setImageResource(imgResourse);
+        holder.imgJuego.setImageDrawable(Drawable.createFromPath(imgUri));
         holder.txtTitulo.setText(administracion.getTitulo());
         holder.rbClasificacion.setRating(administracion.getClasificacion());
         holder.txtDescripcion.setText(administracion.getDescripcion());
